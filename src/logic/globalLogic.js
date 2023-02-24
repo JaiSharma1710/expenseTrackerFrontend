@@ -6,10 +6,19 @@ export const GlobalLogic = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [_expenseData, _setExpenseData] = useState([]);
+  const [totalSpend, setTotalSpend] = useState(0);
 
   useEffect(() => {
     getExpenseData();
   }, []);
+
+  useEffect(() => {
+    console.log(_expenseData);
+    if (_expenseData.length > 0) {
+      const total = _expenseData.reduce((acc, curr) => acc + curr.amount, 0);
+      setTotalSpend(total);
+    }
+  }, [_expenseData]);
 
   const getExpenseData = async () => {
     const { data } = await axios.get('http://localhost:7000/api/v1/expense');
@@ -48,5 +57,6 @@ export const GlobalLogic = () => {
     isLoading,
     isSubmitSuccess,
     _expenseData,
+    totalSpend,
   };
 };

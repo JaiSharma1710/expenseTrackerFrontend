@@ -16,6 +16,7 @@ function App() {
     isLoading,
     isSubmitSuccess,
     _expenseData,
+    totalSpend,
   } = GlobalLogic();
 
   return (
@@ -36,6 +37,7 @@ function App() {
       <Header handleMonthChange={handleMonthChange} />
       <Body
         _expenseData={_expenseData}
+        totalSpend={totalSpend}
         handleModalDisplay={handleModalDisplay}
       />
     </>
