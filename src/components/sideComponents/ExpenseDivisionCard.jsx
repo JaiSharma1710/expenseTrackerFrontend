@@ -7,7 +7,7 @@ const CARD_PROPERTIES = {
   BILLS: 'bg-violet-100',
 };
 
-function ExpenseDivisionCard({ type, title, amount }) {
+function ExpenseDivisionCard({ type, total }) {
   return (
     <div className="flex gap-3 justify-center items-center md:gap-5">
       <div
@@ -16,8 +16,8 @@ function ExpenseDivisionCard({ type, title, amount }) {
         <img src={IMAGES_CDN[type]} className="w-12 h-12 md:w-20 md:h-20" />
       </div>
       <span className="leading-5 w-[4.5rem] md:w-28">
-        <h2 className="font-bold md:text-xl">{title}</h2>
-        <p className="font-light md:text-lg">{amount}</p>
+        <h2 className="font-bold md:text-xl">{type}</h2>
+        <p className="font-light md:text-lg">{total}</p>
       </span>
     </div>
   );

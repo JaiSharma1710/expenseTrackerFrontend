@@ -17,6 +17,7 @@ function App() {
     isSubmitSuccess,
     _expenseData,
     totalSpend,
+    _totalExpense,
   } = GlobalLogic();
 
   return (
@@ -38,6 +39,7 @@ function App() {
       <Body
         _expenseData={_expenseData}
         totalSpend={totalSpend}
+        _totalExpense={_totalExpense}
         handleModalDisplay={handleModalDisplay}
       />
     </>

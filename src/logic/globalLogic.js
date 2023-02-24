@@ -7,13 +7,13 @@ export const GlobalLogic = () => {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [_expenseData, _setExpenseData] = useState([]);
   const [totalSpend, setTotalSpend] = useState(0);
+  const [_totalExpense, _setTotalExpense] = useState([]);
 
   useEffect(() => {
     getExpenseData();
   }, []);
 
   useEffect(() => {
-    console.log(_expenseData);
     if (_expenseData.length > 0) {
       const total = _expenseData.reduce((acc, curr) => acc + curr.amount, 0);
       setTotalSpend(total);
@@ -21,8 +21,16 @@ export const GlobalLogic = () => {
   }, [_expenseData]);
 
   const getExpenseData = async () => {
-    const { data } = await axios.get('http://localhost:7000/api/v1/expense');
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/api/v1/expense`,
+    );
+
+    const totalData = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/api/v1/expense/total`,
+    );
+
     _setExpenseData(data.data);
+    _setTotalExpense(totalData.data.data);
   };
 
   const handleMonthChange = (e) => {
@@ -58,5 +66,6 @@ export const GlobalLogic = () => {
     isSubmitSuccess,
     _expenseData,
     totalSpend,
+    _totalExpense,
   };
 };
