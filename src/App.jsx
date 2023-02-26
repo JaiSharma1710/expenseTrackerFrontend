@@ -12,6 +12,7 @@ function App() {
     handleMonthChange,
     handleModalDisplay,
     submitHandler,
+    deleteExpenseData,
     isFormActive,
     isLoading,
     isSubmitSuccess,
@@ -41,6 +42,7 @@ function App() {
         totalSpend={totalSpend}
         _totalExpense={_totalExpense}
         handleModalDisplay={handleModalDisplay}
+        deleteExpenseData={deleteExpenseData}
       />
     </>
   );

@@ -22,11 +22,11 @@ export const GlobalLogic = () => {
 
   const getExpenseData = async () => {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/v1/expense`,
+      `${process.env.REACT_APP_BASE_URL}/expense`,
     );
 
     const totalData = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/v1/expense/total`,
+      `${process.env.REACT_APP_BASE_URL}/expense/total`,
     );
 
     _setExpenseData(data.data);
@@ -47,7 +47,7 @@ export const GlobalLogic = () => {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        'http://localhost:7000/api/v1/expense',
+        `${process.env.REACT_APP_BASE_URL}/expense`,
         formData,
       );
       if (response.status === 200) setIsSubmitSuccess(true);
@@ -57,10 +57,23 @@ export const GlobalLogic = () => {
     }
   };
 
+  const deleteExpenseData = async (id) => {
+    try {
+      const data = await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/expense/${id}`,
+        id,
+      );
+      getExpenseData();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     handleMonthChange,
     handleModalDisplay,
     submitHandler,
+    deleteExpenseData,
     isFormActive,
     isLoading,
     isSubmitSuccess,
